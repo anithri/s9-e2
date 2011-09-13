@@ -3,7 +3,7 @@ require "spec_helper"
 describe Gotham::AllPlayers do
   let!(:all_players) {Gotham::AllPlayers.new()}
  
-   describe "#new" do
+  describe "#new" do
     it "should initialize" do
       all_players.players.should be_empty
       all_players.available_heroes.should be_a(Hash)

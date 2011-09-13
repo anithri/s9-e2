@@ -1,6 +1,6 @@
 require "spec_helper"
 describe Gotham::Block do
-  let!(:block) { Gotham::Block.new(1, "region", [1,2,4,5], 1, 2, 3, true) }
+  let!(:block) { Gotham::Block.new(1, "region", [2,4,5], 1, 2, 3, true) }
   describe "#new" do
 
     it "should do initialize with only parent and number parameters" do
@@ -18,7 +18,7 @@ describe Gotham::Block do
     it "should initialize with all parameters set" do
       block.number.should == 1
       block.region.should == "region"
-      block.paths.should == [1, 2, 4, 5]
+      block.paths.should == [2, 4, 5]
       block.crime.should == 1
       block.streets.should == 2
       block.disaster.should == 3
@@ -46,7 +46,7 @@ describe Gotham::Block do
     it "should add a path" do
       block.add_path(0)
 
-      block.paths.should include(0, 1, 2, 4, 5)
+      block.paths.should include(0, 2, 4, 5)
     end
 
     it "should remove duplicate entries in path" do
@@ -56,7 +56,7 @@ describe Gotham::Block do
       block.add_path(4)
       block.add_path(5)
 
-      block.paths.should include(0, 1, 2, 4, 5)
+      block.paths.should include(0, 2, 4, 5)
     end
   end
 
@@ -209,5 +209,20 @@ describe Gotham::Block do
       block.disaster.should == 0
     end
 
+  end
+
+  describe "#show_moves" do
+
+    it "should return a list of possible moves" do
+      far_block = Gotham::Block.new(3,"far")
+
+      block.add_connection(far_block)
+
+      block.show_moves.should have(4).items
+      block.show_moves.should include("region:2")
+      block.show_moves.should include("region:4")
+      block.show_moves.should include("region:5")
+      block.show_moves.should include("far:3")
+    end
   end
 end

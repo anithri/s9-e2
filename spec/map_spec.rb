@@ -19,7 +19,15 @@ describe Gotham::Map do
       
       my_map.should have(2).regions
     end
+  end
 
+  describe "#move_to" do
+    it "should correctly return a block given a valid destination string" do
+      dest_block = map.move_to("docks:4")
+
+      dest_block.region.name.should == "docks"
+      dest_block.number.should == 4
+    end
 
   end
 end

@@ -1,16 +1,17 @@
 module Gotham
   class Block
-    attr_accessor :paths, :crime, :streets, :disaster, :hideout
+    attr_accessor :paths, :crime, :streets, :disaster, :hideout, :name
 
     attr_reader :number, :region, :connector
-    
+
     COLORS = [:white, :blue, :green, :yellow, :red]
 
     #Don't allow for more levels than there are color levels.'
     MAX_LEVEL = COLORS.length - 1
+
     def initialize(number, region, paths = [],
-                   crime = 0, streets = 0, disaster = 0,
-                   hideout = false)
+        crime = 0, streets = 0, disaster = 0,
+        hideout = false)
       @number = number
       @paths = paths
       @region = region
@@ -25,42 +26,52 @@ module Gotham
       "#{number}.#{color(@streets)}.#{color(@disaster)}"
     end
 
+    def move_entry(val = @number)
+      "#{@region}:#{val}"
+    end
+
     def add_connection(to)
       @connector = to
     end
 
     def add_path(to)
       @paths.push(to).uniq!
-    end     
+    end
 
     def increase_crime(i = 1)
       @crime += i
       @crime = MAX_LEVEL if @crime > MAX_LEVEL
     end
-    
+
     def increase_streets(i = 1)
       @streets += i
       @streets = MAX_LEVEL if @streets > MAX_LEVEL
     end
-    
+
     def increase_disaster(i = 1)
       @disaster += i
       @disaster = MAX_LEVEL if @disaster > MAX_LEVEL
     end
-    
+
     def decrease_crime(i = 1)
       @crime -= i
       @crime = 0 if @crime < 0
     end
-    
+
     def decrease_streets(i = 1)
       @streets -= i
       @streets = 0 if @streets < 0
     end
-    
+
     def decrease_disaster(i = 1)
       @disaster -= i
       @disaster = 0 if @disaster < 0
+    end
+
+    def show_moves
+      moves = []
+      moves << @connector.move_entry unless @connector.nil?
+      moves + @paths.map { |b| move_entry(b) }
     end
 
     private

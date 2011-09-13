@@ -62,10 +62,8 @@ describe Gotham::Region do
 
       region.add_connection(far_region)
 
-      puts region.random_connector
-      puts far_region.random_connector
 
-          region.block(6).connector.number.should == 2
+      region.block(6).connector.number.should == 2
       far_region.block(2).connector.number.should == 6
       
     end
