@@ -15,6 +15,6 @@ module Gotham
   def self.base_regions
     #[["Downtown", "GCPD"],
     # ["Arkham Asylum", "Secret Cave"]]
-    ["Downtown","Arkham Asylum"]
+    ["Downtown", "Arkham Asylum"]
   end
 end

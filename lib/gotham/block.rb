@@ -10,7 +10,7 @@ module Gotham
     MAX_LEVEL = COLORS.length - 1
 
     def initialize(number, region, paths = [],
-        crime = 0, streets = 0, disaster = 0, hideout = false)
+                   crime = 0, streets = 0, disaster = 0, hideout = false)
       @number   = number
       @paths    = paths
       @region   = region
@@ -76,7 +76,7 @@ module Gotham
       @disaster = 0 if @disaster < 0
 
       phrase = @disaster > 0 ? "quieting down" : "is dealt with here"
-      puts "#{move_entry}: Gangs #{phrase}.  Now #{@disaster}"  
+      puts "#{move_entry}: Gangs #{phrase}.  Now #{@disaster}"
     end
 
     def show_moves
@@ -86,15 +86,15 @@ module Gotham
     end
 
     def show_area
-      out = "\nCurrently in: #{move_entry}\n"
+      out  = "\nCurrently in: #{move_entry}\n"
       out += "  Street Violence: #{@streets}\n"
       out += "  Disaster Level:  #{@disaster}\n"
       out += "Connected areas:"
+
       show_moves.each do |r|
         out += "  #{self.region.map.get_block(r)}"
       end
 
-      puts @connector.inspect
       out
     end
 

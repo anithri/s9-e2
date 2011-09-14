@@ -1,26 +1,28 @@
 require_relative 'block.rb'
 module Gotham
   class Region
-    attr_accessor :map,:blocks, :name, :connectors, :disaster_area
+    attr_accessor :map, :blocks, :name, :connectors, :disaster_area
 
     #TODO difficulty attribute, add to initializer with default of 0
     # and add method to remove 1 random path from a random path (not 0)
     # for each point of difficulty
 
-    def initialize(map,name, hideout_name = nil)
+    def initialize(map, name, hideout_name = nil)
       @map          = map
       @name         = name
-      @hideout_name = hideout_name 
-      @blocks = {0 => Gotham::Block.new(0, self, [], 0, 0, 0, true),
-                 1 => Gotham::Block.new(1, self, [2, 4, 5], 0, 0, 0, false),
-                 2 => Gotham::Block.new(2, self, [1, 3, 4, 5, 6], 0, 0, 0, false),
-                 3 => Gotham::Block.new(3, self, [2, 5, 6], 0, 0, 0, false),
-                 4 => Gotham::Block.new(4, self, [1, 2, 5, 7, 8], 0, 0, 0, false),
-                 5 => Gotham::Block.new(5, self, [1, 2, 3, 4, 6, 7, 8, 9], 0, 0, 0, false),
-                 6 => Gotham::Block.new(6, self, [2, 3, 5, 8, 9], 0, 0, 0, false),
-                 7 => Gotham::Block.new(7, self, [4, 5, 8], 0, 0, 0, false),
-                 8 => Gotham::Block.new(8, self, [4, 5, 6, 7, 9], 0, 0, 0, false),
-                 9 => Gotham::Block.new(9, self, [5, 6, 8], 0, 0, 0, false)}
+      @hideout_name = hideout_name
+      @blocks       = {
+          0 => Gotham::Block.new(0, self, [], 0, 0, 0, true),
+         1 => Gotham::Block.new(1, self, [2, 4, 5], 0, 0, 0, false),
+         2 => Gotham::Block.new(2, self, [1, 3, 4, 5, 6], 0, 0, 0, false),
+         3 => Gotham::Block.new(3, self, [2, 5, 6], 0, 0, 0, false),
+         4 => Gotham::Block.new(4, self, [1, 2, 5, 7, 8], 0, 0, 0, false),
+         5 => Gotham::Block.new(5, self, [1, 2, 3, 4, 6, 7, 8, 9],
+                                                          0, 0, 0, false),
+         6 => Gotham::Block.new(6, self, [2, 3, 5, 8, 9], 0, 0, 0, false),
+         7 => Gotham::Block.new(7, self, [4, 5, 8], 0, 0, 0, false),
+         8 => Gotham::Block.new(8, self, [4, 5, 6, 7, 9], 0, 0, 0, false),
+         9 => Gotham::Block.new(9, self, [5, 6, 8], 0, 0, 0, false)}
 
       self.add_path(0)
 
@@ -30,7 +32,7 @@ module Gotham
     end
 
     def add_connection(endpoint)
-      my_block = random_connector
+      my_block    = random_connector
       their_block = endpoint.random_connector
       my_block.add_connection(their_block)
       their_block.add_connection(my_block)
@@ -69,7 +71,7 @@ module Gotham
 
     def start_disaster
       unless has_disaster?
-        @disaster_area = random_block
+        @disaster_area          = random_block
         @disaster_area.disaster = 1
       end
     end

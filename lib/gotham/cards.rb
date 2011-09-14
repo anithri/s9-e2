@@ -4,12 +4,10 @@ module Gotham
     attr_accessor :deck, :discard, :master
 
     def initialize
-      @deck = []
+      @deck    = []
       @discard = []
-      @master = []
-      hands = {}
+      @master  = []
+      hands    = {}
     end
-
-    
   end
 end

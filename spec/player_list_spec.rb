@@ -1,8 +1,8 @@
 require "spec_helper"
 
 describe Gotham::PlayerList do
-  let!(:all_players) {Gotham::PlayerList.new()}
- 
+  let!(:all_players) { Gotham::PlayerList.new() }
+
   describe "#new" do
     it "should initialize" do
       all_players.players.should be_empty
@@ -13,7 +13,7 @@ describe Gotham::PlayerList do
 
   describe "#add_player" do
     it "should add players correctly" do
-      who = all_players.available_heroes.keys[0]
+      who           = all_players.available_heroes.keys[0]
       initial_count = all_players.pregen_chars.length
       all_players.add_player(who)
 

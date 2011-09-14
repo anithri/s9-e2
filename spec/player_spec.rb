@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe Gotham::Player do
-  let!(:player) {Gotham::Player.new(:batman, 3,3,3,3, "Gotham Heights", "Batcave")}
+  let!(:player) { Gotham::Player.new(:batman, 3, 3, 3, 3, "Gotham Heights", "Batcave") }
 
   describe "#new" do
     it "should initialize" do

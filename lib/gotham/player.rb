@@ -35,7 +35,7 @@ module Gotham
       destination = @location.region.map.get_block(dest)
 
       turn_cost = destination.region == @location.region ? 1 : 2
-\
+      \
       @location = destination
 
       return turn_cost

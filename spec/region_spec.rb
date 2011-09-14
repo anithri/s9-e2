@@ -1,7 +1,7 @@
 require 'spec_helper'
 describe Gotham::Region do
-  let!(:region) {  Gotham::Region.new(nil,"test")
-}
+  let!(:region) { Gotham::Region.new(nil, "test")
+  }
   describe "#new" do
     it "should initialize with just name parameter" do
       region.name.should == "test"
@@ -25,7 +25,7 @@ describe Gotham::Region do
   describe "#add_path" do
     context "when called with integers in both from and to parameters" do
       it "should add paths to each other" do
-        region.add_path(1,9)
+        region.add_path(1, 9)
 
         region.block(1).paths.should include(9)
         region.block(9).paths.should include(1)
@@ -34,7 +34,7 @@ describe Gotham::Region do
 
     context "when called with objects in both from and to parameters" do
       it "should add paths to each other" do
-        region.add_path(region.block(1),region.block(9))
+        region.add_path(region.block(1), region.block(9))
 
         region.block(1).paths.should include(9)
         region.block(9).paths.should include(1)
@@ -55,7 +55,7 @@ describe Gotham::Region do
 
   describe "#add_connection" do
     it "should add a 2 way connection" do
-      far_region =  Gotham::Region.new(nil,"far region")
+      far_region = Gotham::Region.new(nil, "far region")
 
       region.stub(:random_connector).and_return(region.block(6))
       far_region.stub(:random_connector).and_return(far_region.block(2))
@@ -65,13 +65,7 @@ describe Gotham::Region do
 
       region.block(6).connector.number.should == 2
       far_region.block(2).connector.number.should == 6
-      
     end
 
   end
-end
-private
-
-def sample_region
-
 end

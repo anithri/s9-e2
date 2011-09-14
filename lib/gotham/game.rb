@@ -29,7 +29,7 @@ module Gotham
             puts "actions left: #{actions}"
             puts p.show_area
 
-            actions    -= do_turn(p)
+            actions -= do_turn(p)
           end
         end
 
@@ -74,6 +74,7 @@ module Gotham
 
         2.times do
           target = my_region.random_block
+
           if target.trouble_near_by?(:disaster)
             target.increase_disaster
           end
@@ -87,8 +88,10 @@ module Gotham
 
         if target.streets > 0
           target.increase_streets(2)
+
         elsif target.trouble_near_by?(:streets)
           target.increase_streets
+
         end
       end
     end

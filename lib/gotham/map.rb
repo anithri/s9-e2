@@ -14,7 +14,7 @@ module Gotham
       region_list.shuffle!
       @regions = {}
       region_list.each do |region|
-        @regions[region] = Gotham::Region.new(self,region)
+        @regions[region] = Gotham::Region.new(self, region)
       end
 
       rl = region_list.dup

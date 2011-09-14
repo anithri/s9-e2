@@ -11,7 +11,7 @@ group :development do
   gem 'guard-bundler'
   gem "guard-spork"
   gem 'rb-inotify' #For linux
-  gem 'libnotify' #for linux
+  gem 'libnotify'  #for linux
   gem 'spork'
 end
 

@@ -1,6 +1,11 @@
 require "spec_helper"
 describe Gotham::Block do
-  let!(:block) { Gotham::Block.new(1, "region", [2,4,5], 1, 2, 3, true) }
+  let!(:block) do
+    b = Gotham::Block.new(1, "region", [2, 4, 5], 1, 2, 3, true)
+    b.region.stub(:name).and_return("region")
+    b
+  end
+  
   describe "#new" do
 
     it "should do initialize with only parent and number parameters" do
@@ -214,7 +219,7 @@ describe Gotham::Block do
   describe "#show_moves" do
 
     it "should return a list of possible moves" do
-      far_block = Gotham::Block.new(3,"far")
+      far_block = Gotham::Block.new(3, "far")
       far_block.region.stub!(:name).and_return("far")
       block.region.stub!(:name).and_return("region")
       block.add_connection(far_block)
