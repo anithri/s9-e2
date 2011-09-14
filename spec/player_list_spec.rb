@@ -1,7 +1,7 @@
 require "spec_helper"
 
-describe Gotham::AllPlayers do
-  let!(:all_players) {Gotham::AllPlayers.new()}
+describe Gotham::PlayerList do
+  let!(:all_players) {Gotham::PlayerList.new()}
  
   describe "#new" do
     it "should initialize" do
@@ -21,7 +21,7 @@ describe Gotham::AllPlayers do
       all_players.players[0].name == who
       all_players.should have(initial_count - 1).available_heroes
       all_players.should have(1).player_regions
-      all_players.player_regions[0].should == all_players.pregen_chars[who][4,5]
+      all_players.player_regions[0].should == all_players.pregen_chars[who][4]
     end
   end
 end

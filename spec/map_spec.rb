@@ -28,6 +28,6 @@ describe Gotham::Map do
       dest_block.region.name.should == "docks"
       dest_block.number.should == 4
     end
-
   end
+
 end

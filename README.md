@@ -1,58 +1,53 @@
-Challenge Exercise: Exponential Chaos
-=====================================
+# Gotham a cooperative console game
+_written by: Scott Parrish_
 
-_written by: Shane Emmons_
+### How do I launch the game?
 
-My wife and I play a lot of board games. After getting beat, time and time
-again, I decided it was time to find some games where we could work together.
-After experimenting with a few, we quickly found our two favorites: Pandemic
-and Forbidden Island. But now that we've played them so much, we're looking for
-more. That's where you come in. 
+    % bin/gotham
 
-During this assignment, you are going to create
-your own cooperative board game using similar mechanics to those in Pandemic
-and Forbidden Island. You should attempt to model the game and let a single
-player play a few turns via the console. You don't need fancy graphics or
-visual design.
+## How do I play?
 
-## Examples of chaotic cooperative games with exponential elements
+_first off accept that it is an incomplete game, and doesn't actually have a way
+to win yet_
 
-Below are some links to videos and/or rules for several games that you can draw
-inspiration from.
+After starting, you'll be asked to enter how many players you want, and which
+character each player with play.
 
-Pandemic:
+There are 4 statistics that each character has
 
-- http://www.youtube.com/watch?v=5JxMh1FP4b0
-- http://www.zmangames.com/boardgames/pandemic.htm
-- http://www.youtube.com/watch?v=6vaJhiht8NA&feature=fvst
+<table>
+<tr><th>Name</th><th>Detecting</th><th>Fighting</th><th>Bravery</th><th
+>Gadgets</th><th>Home</th><th>Hideout</th></tr>
+<tr><td> batman </td><td> 3 </td><td> 3 </td><td> 3 </td><td> 3 </td><td> "Heights" </td><td> "Batcave" </td></tr>
+<tr><td> robin </td><td> 3 </td><td> 2 </td><td> 3 </td><td> 4 </td><td> "Financial District" </td><td> "Wayne Tower" </td></tr>
+<tr><td> nightwing </td><td> 3 </td><td> 4 </td><td> 2 </td><td> 3 </td><td> "Bludhaven" </td><td> "the Loft" </td></tr>
+<tr><td> batgirl </td><td> 4 </td><td> 3 </td><td> 2 </td><td> 3 </td><td> "Gotham Docks" </td><td> "Subway Station" </td></tr>
+<tr><td> oracle </td><td> 5 </td><td> 1 </td><td> 2 </td><td> 4 </td><td> "Downtown" </td><td> "Clocktower" </td></tr>
+<tr><td> huntress </td><td> 3 </td><td> 3 </td><td> 4 </td><td> 2 </td><td> "Little Italy" </td><td> "Aerie One" </td></tr>
+<tr><th>Name</th><th>solve_crimer</th><th>fight_gangs</th><th>rescue_people</th><th
+>short_term bonus</th><th>Home</th><th>Hideout</th></tr>
+</table>
 
-Forbidden Island:
+Detecting and Gadgets ate not currently used in the game.
 
-- http://www.youtube.com/watch?v=aYVOTPsWeN4
+You start the game in your hideout, with gang violence in the city rising and
+disasters befalling the citizens.
 
-Ghost Stories: 
+Each of your turns will be preeeded by the situation in gotham getting worse,
+followed by your chance to perform 4 actions.  Before each of your actions
+you'll be given a summary of the local situation and a menu of actions you
+can take.  fight_gangs reduce the street violence while rescue_people reduces
+ the disaster level.  If your skill is above the current disaster level,
+ you will redue the threat by 2.  Otherwise only by 1.
 
-- http://boardgamegeek.com/boardgame/37046/ghost-stories
+You have 24 turns to save gotham!
 
-Red November: 
+## TODO List
 
-- http://boardgamegeek.com/boardgame/36946/red-november
+1.  Implement Gadgets
+2.  Implement Fight Crime
+3.  Implement Winning conditions.
+4.  Create presenter(s) to decoouple engine from stdout
+5.  improve presentation
+6.  Balance game engine.
 
-## Exercise Summary
-
-- Design and model a game with the following features:
-  - A map which can be represented as a graph structure
-  - Rules that result in exponentially increasing danger as the game progresses
-  - Resources which players must collect repeatedly in sets to win the game
-  - Rules that create tension between slowing down immediate danger and
-    collecting all the needed resources
-- Create your own unique theme, don't copy the scenarios from the example games
-- Implement at least a single player mode which demonstrates the game setup and the
-  different actions that can take place on a turn.
-
-## Submission Guidelines
-
-If you plan to work on this exercise, you should fork this repository 
-and push code early and often during the course. The course 
-guidelines PDF explains the submission process in detail, but please 
-contact an instructor if you have any questions.

@@ -215,7 +215,8 @@ describe Gotham::Block do
 
     it "should return a list of possible moves" do
       far_block = Gotham::Block.new(3,"far")
-
+      far_block.region.stub!(:name).and_return("far")
+      block.region.stub!(:name).and_return("region")
       block.add_connection(far_block)
 
       block.show_moves.should have(4).items
@@ -225,4 +226,5 @@ describe Gotham::Block do
       block.show_moves.should include("far:3")
     end
   end
+
 end

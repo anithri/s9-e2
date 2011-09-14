@@ -1,6 +1,6 @@
 require_relative "player.rb"
 module Gotham
-  class AllPlayers
+  class PlayerList
     attr_accessor :players, :whose_turn, :available_heroes
 
     def pregen_chars
@@ -28,11 +28,27 @@ module Gotham
     end
 
     def player_regions
-      players.collect { |p| [p.home, p.base] }
+      players.collect { |p| p.home }
     end
 
     def set_starting_locations(map)
       players.each { |p| p.set_starting_location(map) }
+    end
+
+    def deal_hands(cards)
+      players.each { |p| p.deal_hand(cards) }
+    end
+
+    def player_count
+      @players.length
+    end
+
+    def extra_region_count
+      player_count< 4 ? player_count : 4
+    end
+
+    def each
+      players.each { |e| yield(e) }
     end
   end
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 describe Gotham::Region do
-  let!(:region) {  Gotham::Region.new("test")
+  let!(:region) {  Gotham::Region.new(nil,"test")
 }
   describe "#new" do
     it "should initialize with just name parameter" do
@@ -55,7 +55,7 @@ describe Gotham::Region do
 
   describe "#add_connection" do
     it "should add a 2 way connection" do
-      far_region =  Gotham::Region.new("far region")
+      far_region =  Gotham::Region.new(nil,"far region")
 
       region.stub(:random_connector).and_return(region.block(6))
       far_region.stub(:random_connector).and_return(far_region.block(2))

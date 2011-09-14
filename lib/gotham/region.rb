@@ -1,14 +1,16 @@
 require_relative 'block.rb'
 module Gotham
   class Region
-    attr_accessor :blocks, :name, :connectors
+    attr_accessor :map,:blocks, :name, :connectors, :disaster_area
 
     #TODO difficulty attribute, add to initializer with default of 0
     # and add method to remove 1 random path from a random path (not 0)
     # for each point of difficulty
 
-    def initialize(name)
-      @name = name
+    def initialize(map,name, hideout_name = nil)
+      @map          = map
+      @name         = name
+      @hideout_name = hideout_name 
       @blocks = {0 => Gotham::Block.new(0, self, [], 0, 0, 0, true),
                  1 => Gotham::Block.new(1, self, [2, 4, 5], 0, 0, 0, false),
                  2 => Gotham::Block.new(2, self, [1, 3, 4, 5, 6], 0, 0, 0, false),
@@ -41,7 +43,7 @@ module Gotham
     end
 
     def block(k)
-      @blocks[k]
+      @blocks[k.to_i]
     end
 
     def random_block
@@ -63,6 +65,17 @@ module Gotham
 
     def to_s
       "Region:#{@name}"
+    end
+
+    def start_disaster
+      unless has_disaster?
+        @disaster_area = random_block
+        @disaster_area.disaster = 1
+      end
+    end
+
+    def has_disaster?
+      @disaster_area
     end
 
     def to_map

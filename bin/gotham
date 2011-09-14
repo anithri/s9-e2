@@ -9,14 +9,11 @@ num_players = ask("How many players? [1-6]", Integer) do |q|
   q.in = 1..6
 end
 
-players = Gotham::AllPlayers.new
+players = Gotham::PlayerList.new
 
 num_players.times do |num|
   players.add_player(choose *players.available_heroes.keys)
 end
+Gotham::Game.new(players).setup_game.start_game
 
-all_regions = Gotham.base_regions + players.player_regions
-map = Gotham::Map.new(*all_regions)
-
-puts map.to_s
 

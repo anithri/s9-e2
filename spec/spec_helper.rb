@@ -24,3 +24,9 @@ Spork.each_run do
   require 'gotham'
 end
 
+def full_game
+  players = Gotham::PlayerList.new
+  players.add_player(:batman)
+  Gotham::Game.new(players)
+end
+

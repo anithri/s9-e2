@@ -4,11 +4,17 @@ module Gotham
 
     attr_accessor :regions, :map
 
+    def self.with_players(players)
+      all_regions = Gotham.base_regions
+      all_regions += players.player_regions
+      self.new(*all_regions)
+    end
+
     def initialize(*region_list)
       region_list.shuffle!
       @regions = {}
       region_list.each do |region|
-        @regions[region] = Gotham::Region.new(region)
+        @regions[region] = Gotham::Region.new(self,region)
       end
 
       rl = region_list.dup
@@ -129,13 +135,26 @@ module Gotham
       end
     end
 
+    def region(name)
+      @regions[name]
+    end
+
     def random_region
       @regions[@regions.keys.sample]
+    end
+
+    def random_block
+      random_region.random_block
     end
 
     def move_to(dest_string)
       dest_region, dest_block = dest_string.split(":")
       @regions[dest_region].block(dest_block.to_i)
+    end
+
+    def get_block(my_region)
+      my_region, my_block = my_region.split(":")
+      region(my_region).block(my_block)
     end
   end
 end
